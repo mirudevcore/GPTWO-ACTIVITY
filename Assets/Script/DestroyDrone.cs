@@ -4,22 +4,45 @@ public class DestroyDrone : MonoBehaviour
 {
     public BoxCollider hitbox;
     public int HP = 100;
-    public int Points;
+
+
+    private void OnEnable()
+    {
+        Debug.Log("Drones ready.");
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("No target found");
+    }
 
     private void OnMouseDown()
     {
-
-        Points += 50;
         HP -= 25;
         Debug.Log("Drone got hit! Drone's remaining HP: " + HP);
-        Debug.Log("Your Points: " + Points);
 
-        if (HP <= 0) 
+        if (PointsManager.Instance != null)
+        {
+            PointsManager.Instance.IncreasePoints(50);
+        }
+
+        if (HP <= 0)
         {
             Debug.Log("Drone destroyed!");
-            Destroy(gameObject);
 
+            Destroy(gameObject);
             return;
         }
+
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (PointsManager.Instance != null)
+        {
+            PointsManager.Instance.IncreasePoints(-25);
+            Debug.Log("Drone entered the Hazard Zone!");
+        }
+    }
+
 }
