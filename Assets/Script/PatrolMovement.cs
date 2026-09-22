@@ -11,6 +11,7 @@ public class PatrolMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //1. Add frame time to our stopwatch
         timer += Time.deltaTime;
         float t = timer / travelDuration;
@@ -41,5 +42,7 @@ public class PatrolMovement : MonoBehaviour
             // toB = false;
             toB = !toB;
         }
+
+        
     }
 }
