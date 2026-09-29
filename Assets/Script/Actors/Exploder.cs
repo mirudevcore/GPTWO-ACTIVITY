@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class Exploder : MonoBehaviour
+public class Exploder : Actor
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public float explosionRadius = 5f;
+
+    public override void PerformAttack()
     {
-        
+        Explode();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TakeDamage(float damageAmount) 
     {
-        
+        Explode();
     }
+
+    public void Explode()
+    {
+        Debug.Log("BOOOOOM!");
+        Destroy(gameObject);
+    }
+
 }

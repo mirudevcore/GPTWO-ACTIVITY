@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class Grunt : MonoBehaviour
+public class Grunt : Actor
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    protected override void Awake() // lets change the HP/variables of the enemy instead of standard max health from actor
     {
-        
+        base.Awake();
+        maxHealth = 50f;
+        currentHealth = maxHealth;
+        moveSpeed = 4f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void PerformAttack()
     {
-        
+        Debug.Log("I perform BASH attack");
     }
 }
